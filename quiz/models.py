@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
@@ -26,7 +25,7 @@ class Quizzes(models.Model):
 
 
 class Updated(models.Model):  
-    # pass
+
     date_updated = models.DateTimeField(verbose_name= _("Last Updated") , auto_now=True)
 
     class Meta:
@@ -70,8 +69,8 @@ class Answer(Updated):
         verbose_name_plural = _("Answers")
         ordering = ['id']
 
-    category = models.ForeignKey( Question , related_name='answer', on_delete= models.DO_NOTHING)
-    answer_text = models.CharField(max_length=255 , verbose_name= _("Answer Text"))
+    category = models.ForeignKey( Question , related_name = 'answer', on_delete= models.DO_NOTHING)
+    answer_text = models.CharField(max_length = 255 , verbose_name= _("Answer Text"))
     is_right = models.BooleanField(default=False)
 
     def __str__(self) -> str:
