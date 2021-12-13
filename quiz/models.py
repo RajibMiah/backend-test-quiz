@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.base import Model
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -75,3 +76,39 @@ class Answer(Updated):
 
     def __str__(self) -> str:
         return self.answer_text
+
+
+
+
+
+
+
+
+
+
+
+# programming lagnague Model relationship
+
+# class Company(models.Model):
+    
+#     name = models.CharField(max_length=255)
+
+#     def __str__(self) -> str:
+#         return self.name
+
+
+# class Language(models.Model):
+    
+#     name = models.CharField(max_length=255)
+    
+#     def __str__(self) -> str:
+#         return self.name
+
+# class Programmer(models.Model):
+    
+#     name = models.CharField(max_length=255)
+#     company = models.ForeignKey(Company , on_delete =  models.CASCADE)
+#     langugage = models.ManyToManyField(Language , on_delete = models.CASCADE)
+
+#     def __str__(self) -> str:
+#         return self.name
