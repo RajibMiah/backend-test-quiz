@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models.base import Model
 from .models import Answer, Category, Question, Quizzes
 
 # Register your models here.
@@ -25,4 +24,14 @@ class AnswerInlineModel(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     fields =['title' , 'quiz' ]
     list_display = ['title', 'quiz' , 'date_updated']
-    inlines = [AnswerInlineModel ,]
+    inlines = [AnswerInlineModel]
+
+
+@admin.register(Answer)
+
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = [
+        'answer_text', 
+        'is_right', 
+        'question'
+        ]
