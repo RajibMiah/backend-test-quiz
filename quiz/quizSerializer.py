@@ -5,5 +5,13 @@ from .models import Quizzes , Question , Answer
 class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Question
+        model = Quizzes
         fields =['title',]
+
+class RandomQuestionSerializer(serializers.ModelSerializer):
+
+    answer = serializers.StringRelatedField(many = True)
+    
+    class Meta:
+        model = Question
+        fields = ['title' , 'answer']
