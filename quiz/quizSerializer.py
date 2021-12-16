@@ -1,5 +1,5 @@
 from django.db import models
-from rest_framework import serializers
+from rest_framework import fields, serializers
 from .models import Quizzes , Question , Answer
 
 class QuizSerializer(serializers.ModelSerializer):
@@ -8,10 +8,29 @@ class QuizSerializer(serializers.ModelSerializer):
         model = Quizzes
         fields =['title',]
 
+class AnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = [
+            'id',
+            'answer_text',
+            'is_right',
+        ]
+   
+
 class RandomQuestionSerializer(serializers.ModelSerializer):
 
-    answer = serializers.StringRelatedField(many = True)
+    answer = AnswerSerializer(many = True , read_only = True)
+
+    class Meta:
+        model = Question
+        fields = ['title' , 'answer']
+
+class QuestionSerializer(serializers.ModelSerializer):
     
+    answer = AnswerSerializer(many = True , read_only = True)
+
     class Meta:
         model = Question
         fields = ['title' , 'answer']
